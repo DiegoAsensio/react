@@ -1,24 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer.jsx';
+import MyNavBar from './components/MyNavBar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Bienvenidos al mejor E-commerce de Argentina.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <MyNavBar /> 
+    <ItemListContainer nombre={'Rodrigo'} amenaza={'mas vale que me apruebes jajaja'} />
+    </>
   );
 }
 
