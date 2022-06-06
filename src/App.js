@@ -1,12 +1,20 @@
 import './App.css';
+import ItemCount from './components/ItemCount';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer.jsx';
-import MyNavBar from './components/MyNavBar';
+import MyNavBar from './components/NavBar/MyNavBar';
+import NavBar from './components/NavBar/NavBar.css';
 
 function App() {
+
+  const onAdd = (count) =>{
+    alert (`sumaste ${count} productos`)
+  }
+
   return (
     <>
     <MyNavBar /> 
-    <ItemListContainer nombre={'Rodrigo'} amenaza={'mas vale que me apruebes jajaja'} />
+    <ItemListContainer />
+    <ItemCount inicial={1} max={5} onAdd={onAdd} /> 
     </>
   );
 }
