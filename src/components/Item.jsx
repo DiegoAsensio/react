@@ -1,21 +1,20 @@
 import React from 'react'
 import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap'
 
-const Item = ({item}) => {
+const Item = ({personaje}) => {
+  const { name, image, species, status } = personaje
+
   return (
-      <Card style={{ width: '18rem', marginLeft: '15px' }}>
-      <img src={item.img} alt={item.nombre} style={{ maxWidth: '250px', maxHeight: '250px' }} />
+      <Card style={{ width: '18rem', margin: '5px' }}>
+      <img src={image} alt={name} style={{ maxWidth: '250px', maxHeight: '250px' }} />
   <Card.Body>
-    <Card.Title><p>{item.nombre}</p></Card.Title>
+    <Card.Title>{name}</Card.Title>
     <Card.Text>
-    <p>{item.desc}</p>
+    Species: {species}
+    <br />
+    Status: {status}
     </Card.Text>
   </Card.Body>
-  <ListGroup className="list-group-flush">
-    <ListGroupItem><p>Monto: {item.precio}</p></ListGroupItem>
-    <ListGroupItem><p>Categoria: {item.tipo}</p></ListGroupItem>
-    <Button variant="outline-primary" size="lg">Detalle</Button>
-  </ListGroup>
 </Card>
   )
 }

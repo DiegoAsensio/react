@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+/* import React, { useEffect, useState } from 'react'
 import ItemList from '../Items/ItemList';
 import './ItemListContainer.css'
 
@@ -82,4 +82,4 @@ export default function ItemListContainer() {
       </div>
     </>
   );
-}
+} */
