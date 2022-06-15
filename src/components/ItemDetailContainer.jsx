@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import ItemDetail from './ItemDetail';
+import { getProductos } from "../helpers/products";
+import { useParams } from 'react-router-dom';
 
 export default function ItemDetailContainer() {
-    const [personajes, setPersonajes] = useState([]);
-
+    const [resultado, setResultado] = useState({});
+    const [loading, setLoading] = useState(true);
+    const { id } = useParams();
     useEffect(() => {
-    fetch("https://rickandmortyapi.com/api/character")
-    .then(res => res.json())
-    .catch(error => console.log(error))
-    .then(res => setPersonajes(res.results))
-    }, [])
-    
-    console.log(personajes)
 
+        getProductos
+          .then((result) => {
+            setResultado(result.find(producto => producto.id == id));
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }, []);
+    
+   
 return (
-    <div>
-        <ItemDetail personajes={personajes} />
-    </div>
+    <>
+        {loading ? 'Cargando...' :<ItemDetail resultado={resultado} />}
+    </>
 )
 }

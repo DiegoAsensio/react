@@ -1,4 +1,4 @@
-/* import React from 'react'
+import React from 'react'
 import Item from '../Item'
 import './ItemList.css'
 
@@ -10,4 +10,4 @@ const ItemList = ({resultado}) => {
   )
 }
 
-export default ItemList  */
+export default ItemList
