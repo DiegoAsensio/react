@@ -1,31 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const ItemCount = ({ inicial, max, onAdd }) => {
+const ItemCount = ({ stock = 5, compra, setCompra, agregarAlCarrito }) => {
+	const sumar = () => {
+		compra < stock && setCompra(compra + 1);
+	};
 
-    const [count, setCount] = useState(inicial)
+	const restar = () => {
+		compra > 1 && setCompra(compra - 1);
+	};
 
-    const sumar = () => {
-        if (count < max){
-            setCount(count + 1)
-        } else {
-            alert(`No puedes agregar más productos por falta de stock`)
-        }
-    }
-    const restar = () => {
-        count > inicial ? setCount(count - 1) : alert(`No puedes quitar mas productos`)
-    }
-    const reset = () => {
-        setCount(inicial)
-    }
+	return (
+		<>
+			{stock === 0 ? (
+				<button className="mt-3 btn btn-sm btn-danger">Sin stock</button>
+			) : (
+				<div className="mt-2">
+					<button onClick={restar} className="btn btn-sm btn-outline-success">
+						-
+					</button>
+					<span className="mx-2">{compra}</span>
+					<button onClick={sumar} className="btn btn-sm btn-outline-success">
+						+
+					</button>
 
-  return (
-    <div>
-        <h2>{count}</h2>
-        <button onClick={sumar}>+</button>
-        <button onClick={restar}>-</button>
-        <button onClick={() => {onAdd(count); reset() }}>Agregar al carrito</button>
-    </div>
-  )
-}
-
-export default ItemCount
+					<div>
+						<button
+							onClick={agregarAlCarrito}
+							className="my-2 btn btn-sm btn-success"
+						>
+							Agregar al carrito
+						</button>
+					</div>
+				</div>
+			)}
+		</>
+	);
+};
+export default ItemCount;

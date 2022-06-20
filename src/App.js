@@ -6,15 +6,14 @@ import ItemDetailContainer from './components/ItemDetailContainer.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './components/Pages/Home';
 import Contacto from './components/Pages/Contacto';
+import Cart from './components/Cart';
+import { CustomCartProvider } from './context/CartContext';
 
 function App() {
 
-  const onAdd = (count) =>{
-    alert (`sumaste ${count} productos`)
-  }
-
   return (
     <>
+    <CustomCartProvider>
     <BrowserRouter>
     <MyNavBar />
     <Routes>
@@ -22,10 +21,11 @@ function App() {
       <Route path="/category/:category" element={<Home />} />
       <Route path="/contacto" element={<Contacto />} />
       <Route path="/detail/:id" element={<ItemDetailContainer />} />
+      <Route path="/cart" element={<Cart/>} />
     </Routes>
     </BrowserRouter>
+    </CustomCartProvider>
     </>
   );
-}
-/* */
+};
 export default App;
