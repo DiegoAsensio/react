@@ -14,7 +14,7 @@ export default function ItemListContainer() {
 			.then((result) => {
 				if (category) {
 					setResultado(
-						result.filter((producto) => producto.categoria === category)
+						result.filter((producto) => producto.category === category)
 					);
 				} else {
 					setResultado(result);

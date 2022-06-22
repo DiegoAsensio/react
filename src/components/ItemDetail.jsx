@@ -12,15 +12,10 @@ const ItemDetail = ({ resultado }) => {
 	};
 	const [compra, setCompra] = useState(1);
 
-	const agregarAlCarrito = () => {
+	const agregarAlCarrito = (compra) => {
 		const ItemToAdd = {
-			id,
-			name,
-			price,
-			description,
-			stock,
-			category,
-			compra,
+			...resultado,
+			cantidad: compra,
 		};
 		addItem(ItemToAdd);
 	};

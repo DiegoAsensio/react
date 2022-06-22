@@ -26,7 +26,7 @@ const ItemCount = ({ stock = 5, compra, setCompra, agregarAlCarrito }) => {
 
 					<div>
 						<button
-							onClick={agregarAlCarrito}
+							onClick={() => agregarAlCarrito(compra)}
 							className="my-2 btn btn-sm btn-success"
 						>
 							Agregar al carrito

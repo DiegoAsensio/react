@@ -5,6 +5,7 @@ import CartItem from "./CartItem";
 
 const Cart = () => {
 	const { cart, vaciarCarrito, cartTotal } = useContext(CartContext);
+	console.log(cart);
 	return (
 		<>
 			<div className="text-center mt-5">
