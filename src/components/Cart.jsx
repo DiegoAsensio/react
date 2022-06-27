@@ -8,14 +8,17 @@ const Cart = () => {
 	console.log(cart);
 	return (
 		<>
-			<div className="text-center mt-5">
-				<h2 className="fw-bold">CARRITO DE COMPRAS</h2>
+			<div className="text-center mt-5 ">
+				<h2 className="fw-bold">
+					Todavía no agregaste ningún producto al carrito
+				</h2>
 
 				{cart.length === 0 ? (
 					<div className="mt-5">
-						<p>Aún no tenés productos en tu carrito</p>
 						<Link to="/">
-							<button className="mt-5 btn btn-primary">Ir a la Home</button>
+							<button className="mt-5 btn btn-primary">
+								Empezar a comprar
+							</button>
 						</Link>
 					</div>
 				) : (
