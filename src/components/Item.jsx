@@ -6,7 +6,7 @@ const Item = ({ item }) => {
 	return (
 		<Card style={{ width: "18rem", marginLeft: "15px" }}>
 			<img
-				src={item.img}
+				src={item?.img}
 				alt={item.name}
 				style={{ maxWidth: "250px", maxHeight: "250px" }}
 			/>

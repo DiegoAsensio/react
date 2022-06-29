@@ -1,35 +1,58 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductos } from "../../helpers/products";
 import ItemList from "../Items/ItemList";
 import "./ItemListContainer.css";
+import {
+	collection,
+	doc,
+	getDocs,
+	getFirestore,
+	query,
+	where,
+} from "firebase/firestore";
 
 export default function ItemListContainer() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 	const [resultado, setResultado] = useState([]);
-	const { category } = useParams();
-	useEffect(() => {
-		getProductos
-			.then((result) => {
-				if (category) {
-					setResultado(
-						result.filter((producto) => producto.category === category)
-					);
-				} else {
-					setResultado(result);
-				}
-			})
-			.catch((error) => {
-				setError(true);
-				console.log(error);
-			})
-			.finally(() => {
-				setLoading(false);
-			});
-	}, [category]);
+	const { id } = useParams();
 
-	console.log(category);
+	useEffect(() => {
+		const db = getFirestore();
+		const productsCollection = collection(db, "items");
+
+		if (id) {
+			const q = query(productsCollection, where("category", "==", id));
+
+			getDocs(q)
+				.then((snapshot) => {
+					setResultado(
+						snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+					);
+				})
+				.catch((error) => {
+					setError(error);
+				})
+				.finally(() => {
+					setLoading(false);
+				});
+		} else {
+			getDocs(productsCollection)
+				.then((snapshot) => {
+					setResultado(
+						snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+					);
+				})
+				.catch((error) => {
+					setError(error);
+				})
+				.finally(() => {
+					setLoading(false);
+				});
+		}
+	}, [id]);
+
+	console.log(id);
 	console.log(resultado);
 	return (
 		<>

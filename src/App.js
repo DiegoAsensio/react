@@ -8,8 +8,21 @@ import Home from './components/Pages/Home';
 import Contacto from './components/Pages/Contacto';
 import Cart from './components/Cart';
 import { CustomCartProvider } from './context/CartContext';
+import { initializeApp } from "firebase/app";
+
 
 function App() {
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwu06GZ84FPeA0Yu1P2dA2l-mrFoTc7tI",
+    authDomain: "e-commerce-asensio.firebaseapp.com",
+    projectId: "e-commerce-asensio",
+    storageBucket: "e-commerce-asensio.appspot.com",
+    messagingSenderId: "417569453099",
+    appId: "1:417569453099:web:98df752d3c6092a540e66e"
+  };
+  
+initializeApp(firebaseConfig);
+
 
   return (
     <>
@@ -18,7 +31,7 @@ function App() {
     <MyNavBar />
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/category/:category" element={<Home />} />
+      <Route path="/category/:id" element={<Home />} />
       <Route path="/contacto" element={<Contacto />} />
       <Route path="/detail/:id" element={<ItemDetailContainer />} />
       <Route path="/cart" element={<Cart/>} />

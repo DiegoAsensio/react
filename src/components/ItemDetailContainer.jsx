@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
-import { getProductos } from "../helpers/products";
 import { useParams } from "react-router-dom";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 export default function ItemDetailContainer() {
 	const [resultado, setResultado] = useState({});
+	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const { id } = useParams();
 	useEffect(() => {
-		getProductos
-			.then((result) => {
-				setResultado(result.find((producto) => producto.id == id));
+		const db = getFirestore();
+		const productRef = doc(db, "items", id);
+
+		getDoc(productRef)
+			.then((snapshot) => {
+				setResultado({ ...snapshot.data(), id: snapshot.id });
 			})
 			.catch((error) => {
-				console.log(error);
+				setError(error);
 			})
 			.finally(() => {
 				setLoading(false);
 			});
-	}, []);
+	}, [id]);
 
 	return <>{loading ? "Cargando..." : <ItemDetail resultado={resultado} />}</>;
 }
