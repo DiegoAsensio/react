@@ -34,6 +34,12 @@ const Cart = () => {
 							<span className='fw-bold text-warning'> ${cartTotal()}</span>
 						</h3>
 
+						<Link to='/'>
+							<button className='btn btn-xl btn-primary'>
+								Continuar comprando
+							</button>
+						</Link>
+
 						<button onClick={cartClear} className='btn btn-danger'>
 							<i className='bi bi-trash-fill'></i> Vaciar todo el carrito
 						</button>

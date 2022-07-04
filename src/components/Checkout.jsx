@@ -30,7 +30,7 @@ const Checkout = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (values.nombre === "" || values.email === "") {
+		if (values.name === "" || values.email === "") {
 			setErrorMsg(true);
 		}
 
@@ -73,16 +73,14 @@ const Checkout = () => {
 						type='text'
 						placeholder='Escribí tu nombre'
 						className='form-control my-2'
-						value={values.nombre}
 						onChange={handleChange}
-						name='nombre'
+						name='name'
 					/>
 
 					<input
 						type='email'
 						placeholder='Escribí tu mail'
 						className='form-control my-2'
-						value={values.email}
 						onChange={handleChange}
 						name='email'
 					/>
