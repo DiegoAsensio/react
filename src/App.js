@@ -9,6 +9,7 @@ import Contacto from './components/Pages/Contacto';
 import Cart from './components/Cart';
 import { CustomCartProvider } from './context/CartContext';
 import { initializeApp } from "firebase/app";
+import Checkout from './components/Checkout';
 
 
 function App() {
@@ -35,6 +36,7 @@ initializeApp(firebaseConfig);
       <Route path="/contacto" element={<Contacto />} />
       <Route path="/detail/:id" element={<ItemDetailContainer />} />
       <Route path="/cart" element={<Cart/>} />
+      <Route path='/checkout' element={<Checkout />} />
     </Routes>
     </BrowserRouter>
     </CustomCartProvider>
