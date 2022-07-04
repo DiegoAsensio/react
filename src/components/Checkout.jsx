@@ -44,6 +44,7 @@ const Checkout = () => {
 			addDoc(ordersRef, order)
 				.then((doc) => {
 					cartClear();
+					local;
 					Swal.fire({
 						title: "Compra realizada",
 						html: `Tu compra ha sido realizada con éxito. Muchas gracias! <br>&#128516; <br> <br> <b>ID de orden: ${doc.id}</b>`,
