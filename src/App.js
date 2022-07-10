@@ -5,11 +5,12 @@ import NavBar from './components/NavBar/NavBar.css';
 import ItemDetailContainer from './components/ItemDetailContainer.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './components/Pages/Home';
-import Contacto from './components/Pages/Contacto';
 import Cart from './components/Cart';
 import { CustomCartProvider } from './context/CartContext';
 import { initializeApp } from "firebase/app";
 import Checkout from './components/Checkout';
+import Footer from './components/footer/Footer.jsx';
+import About from './components/About/About';
 
 
 function App() {
@@ -33,11 +34,12 @@ initializeApp(firebaseConfig);
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/category/:id" element={<Home />} />
-      <Route path="/contacto" element={<Contacto />} />
       <Route path="/detail/:id" element={<ItemDetailContainer />} />
       <Route path="/cart" element={<Cart/>} />
       <Route path='/checkout' element={<Checkout />} />
+      <Route path='/about' element={<About/>}/>
     </Routes>
+    <Footer/>
     </BrowserRouter>
     </CustomCartProvider>
     </>

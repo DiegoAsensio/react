@@ -1,0 +1,26 @@
+footer {
+	background-color: #fbb034;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 5rem;
+	color: black;
+	margin-top: 4rem;
+}
+
+footer a {
+	color: black;
+	font-weight: 600;
+	text-decoration: none;
+	transition: 0.3s all linear;
+	display: grid;
+	place-items: center;
+}
+
+@media screen and (max-width: 650px) {
+	footer {
+		padding: 1rem 2rem;
+		display: flex;
+		flex-direction: column;
+	}
+}

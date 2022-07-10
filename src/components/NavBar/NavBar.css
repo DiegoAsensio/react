@@ -1,3 +1,57 @@
-.navbar{
-    background-color: #1B3066;
+.sticky {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+}
+
+#navbar {
+	overflow: hidden;
+	background-color: #fbb034;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding: 0;
+}
+
+#navbar li {
+	list-style: none;
+	position: relative;
+	float: left;
+}
+
+#navbar a {
+	color: black;
+	text-decoration: none;
+	padding: 20px;
+}
+
+.nav-button {
+	background-color: #fbb034;
+	border: none;
+	text-transform: uppercase;
+	font-weight: 600;
+}
+.nav-link {
+	color: black;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+}
+
+.logo-text {
+	margin-top: 0.2rem;
+	text-align: center;
+}
+
+h1 {
+	display: flex;
+	flex-direction: column;
+	font-size: 2.35rem;
+}
+
+span {
+	font-size: 0.85rem;
+	margin-top: -0.3rem;
+	text-transform: uppercase;
 }
