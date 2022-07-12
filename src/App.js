@@ -27,7 +27,7 @@ initializeApp(firebaseConfig);
 
 
   return (
-    <>
+    <div className="App">
     <CustomCartProvider>
     <BrowserRouter>
     <MyNavBar />
@@ -42,7 +42,7 @@ initializeApp(firebaseConfig);
     <Footer/>
     </BrowserRouter>
     </CustomCartProvider>
-    </>
+    </div>
   );
 };
 export default App;

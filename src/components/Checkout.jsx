@@ -63,7 +63,7 @@ const Checkout = () => {
 	}
 
 	return (
-		<div className='container'>
+		<div className='container' style={{color: "#fff"}}>
 			<h2>CHECKOUT</h2>
 			<p>Ingresá tus datos para terminar la compra</p>
 
@@ -87,7 +87,7 @@ const Checkout = () => {
 
 					<div>
 						<button type='submit' className='btn btn-success my-3'>
-							Enviar
+							Finalizar Compra
 						</button>
 					</div>
 				</form>

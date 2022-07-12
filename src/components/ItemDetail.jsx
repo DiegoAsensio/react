@@ -4,7 +4,7 @@ import ItemCount from "./ItemCount";
 import {CartContext} from "../context/CartContext";
 
 const ItemDetail = ({resultado}) => {
-	const {id, name, img, stock = 5, price, description, category} = resultado;
+	const {id, name, img, stock, price, description, category} = resultado;
 	const {cart, addItem, isInCart} = useContext(CartContext);
 	const navigate = useNavigate();
 	const handleNavigate = () => {
@@ -25,7 +25,7 @@ const ItemDetail = ({resultado}) => {
 			<div className='d-flex flex-column px-2 align-items-center justify-content-center'>
 				<div
 					className='card p-4 text-dark mx-2 '
-					style={{maxWidth: "700px", backgroundColor: "whitesmoke"}}
+					style={{maxWidth: "700px", backgroundColor: "#F5F5F5"}}
 				>
 					<div className='row g-0'>
 						<div className='col-md-4'>

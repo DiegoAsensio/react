@@ -7,7 +7,7 @@ const Footer = () => {
 		<footer>
 			<p>
 				{" "}
-				© <span>Thrashed Comics.</span> Todos los derechos reservados.
+				<span>Perfect Shoes.</span> Todos los derechos reservados.
 			</p>
 			<Link to='/about' className='btn btn-outline-dark btn-sm'>
 				+ más info

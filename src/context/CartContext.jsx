@@ -31,8 +31,38 @@ export const CustomCartProvider = ({children}) => {
 		return cart.reduce((acc, prod) => (acc += prod.cantidad * prod.price), 0);
 	};
 
-	const eliminarElemento = (name) => {
+	const deleteElement = (name) => {
 		setCart(cart.filter((e) => e.name !== name));
+	};
+
+	const increaseQuantity = (name) => {
+		const productoSeleccionado = cart.map((item) => {
+			if (item.name === name) {
+				if (item.cantidad < item.stock) {
+					return {
+						...item,
+						cantidad: item.cantidad + 1,
+					};
+				}
+			}
+			return item;
+		});
+		setCart(productoSeleccionado);
+	};
+
+	const decreaseQuantity = (name) => {
+		const productoSeleccionado = cart.map((item) => {
+			if (item.name === name) {
+				if (item.cantidad > 1) {
+					return {
+						...item,
+						cantidad: item.cantidad - 1,
+					};
+				}
+			}
+			return item;
+		});
+		setCart(productoSeleccionado);
 	};
 
 	return (
@@ -45,7 +75,9 @@ export const CustomCartProvider = ({children}) => {
 				itemsInCart,
 				cartClear,
 				cartTotal,
-				eliminarElemento,
+				deleteElement,
+				increaseQuantity,
+				decreaseQuantity,
 			}}
 		>
 			{children}

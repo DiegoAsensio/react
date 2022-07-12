@@ -5,13 +5,11 @@ import CartItem from "./CartItem";
 
 const Cart = () => {
 	const {cart, cartClear, cartTotal} = useContext(CartContext);
-	console.log(cart);
+
 	return (
 		<>
-			<div className='text-center mt-5 '>
-				<h2 className='fw-bold'>
-					Todavía no agregaste ningún producto al carrito
-				</h2>
+			<div className='text-center mt-5' style={{color: "#fff"}}>
+				<h2 className='fw-bold'>CARRITO DE COMPRAS</h2>
 
 				{cart.length === 0 ? (
 					<div className='mt-5'>
@@ -29,23 +27,23 @@ const Cart = () => {
 							))}
 						</div>
 
+						<button onClick={cartClear} className='btn btn-danger'>
+							Vaciar todo el carrito
+						</button>
+
 						<h3 className='my-5'>
 							TOTAL DE LA COMPRA:
-							<span className='fw-bold text-warning'> ${cartTotal()}</span>
+							<p className='fw-bold text-warning'> ${cartTotal()}</p>
 						</h3>
 
-						<Link to='/'>
+						<Link to='/' className='me-3'>
 							<button className='btn btn-xl btn-primary'>
 								Continuar comprando
 							</button>
 						</Link>
 
-						<button onClick={cartClear} className='btn btn-danger'>
-							<i className='bi bi-trash-fill'></i> Vaciar todo el carrito
-						</button>
-
 						<Link to='/checkout'>
-							<button className='btn btn-xl btn-primary'>
+							<button className='btn btn-xl btn-success'>
 								Finalizar compra
 							</button>
 						</Link>

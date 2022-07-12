@@ -9,7 +9,7 @@ const About = () => {
 			<p className='main-text'>
 				<img className='logo' src={"/img/logoShoes.png"} alt='Logo' /> es un
 				e-commerce ficticio, desarrollado por <span>Diego Asensio</span>, como
-				proyecto final para el curso de <span>ReactJS</span> de Coderhouse.
+				proyecto final para el curso de <span>React JS</span> de Coderhouse.
 			</p>
 
 			<div className='images-container'>
@@ -29,53 +29,26 @@ const About = () => {
 					</li>
 					<li>
 						Prioricé la <span>reutilización de componentes</span>. De esta
-						manera, las listas de novedades utilizan el mismo componente, lo
-						mismo sucede con los slider o con las tarjetas de productos, entre
-						otros. Sólo cambia la información que se le pasa por props.{" "}
+						manera se utilizan los mismos componentes, esto sucede con las
+						tarjetas de productos, entre otros. Sólo cambia la información que
+						se le pasa por props.{" "}
 					</li>
 					<li>
 						Implementé <span>React Router DOM</span> para la navegación,
 						evitando la recarga innecesaria del sitio web.
 					</li>
 					<li>
-						Creé <span>Contextos</span> tanto para el carrito de compras como
-						para la autenticación de usuarios.
+						Creé <span>Contexto</span> para el carrito de compras.
 					</li>
 					<li>
-						Empleé <span>Firebase</span> como base de datos de los productos y
-						de los usuarios.
+						Empleé <span>Firebase</span> como base de datos de los productos.
 					</li>
 					<li>
-						Creé un useCollection() como <span>Custom Hook</span> que me
-						permitió obtener la información de Firebase para los distintos
-						componentes sólo pasando como referencia la búsqueda que necesitaba.
-						Así, con el mismo Hook se obtiene la data que lista todos los
-						productos, sólo los de alguna categría, las novedades o las órdenes
-						realizadas por los usuarios registrados.
-					</li>
-					<li>
-						Implementé la{" "}
-						<span>modificación de la base de datos en tiempo real</span> a
-						partir de las compras de los usuarios. De esta manera, su compra
-						disminuirá el stock de los productos en Firebase.
-					</li>
-					<li>
-						Creé <span>formularios</span>, con sus respectivas validaciones
-					</li>
-					<li>
-						Me valí del <span>renderizado condicional</span>. Así, dependiendo
-						de un estado determinado se muestran algunos componentes u otros.
-						Por ejemplo: la página de Usuario, en el caso de que no haya un
-						usuario loggeado, mostrará el registro/inicio de sesión y, en
-						cambio, de haber usuario loggeado, mostrará los pedidos que éste
-						realizó. También lo utilicé para renderizar componentes dependiendo
-						del ancho del viewport; por ejemplo, en la versión mobile los
-						componentes Navbar y Slider son distintos a los mostrados en
-						desktop.
+						Creé un <span>formulario</span>, con sus respectivas validaciones
 					</li>
 					<li>
 						En cuanto a los estilos, están realizados con{" "}
-						<span>Boostrap 5 y SASS</span> y es complemente responsive.
+						<span>Boostrap 5 y CSS</span> y es complemente responsive.
 					</li>
 				</ol>
 			</div>

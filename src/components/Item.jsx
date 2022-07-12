@@ -1,23 +1,29 @@
 import React from "react";
-import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import {Card, ListGroup, ListGroupItem, Button} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
-const Item = ({ item }) => {
+const Item = ({item}) => {
 	return (
-		<Card style={{ width: "18rem", marginLeft: "15px" }}>
+		<Card
+			style={{width: "18rem", marginLeft: "15px", backgroundColor: "#0F395C"}}
+		>
 			<img
 				src={item?.img}
 				alt={item.name}
-				style={{ maxWidth: "250px", maxHeight: "250px" }}
+				style={{maxWidth: "100%", maxHeight: "100%"}}
 			/>
 			<Card.Body>
-				<Card.Title>{item.name}</Card.Title>
+				<Card.Title style={{color: "#fff"}}>{item.name}</Card.Title>
 			</Card.Body>
-			<ListGroup className="list-group-flush">
-				<ListGroupItem>Precio: ${item.price}</ListGroupItem>
-				<ListGroupItem>Categoria: {item.category}</ListGroupItem>
+			<ListGroup className='list-group-flush'>
+				<ListGroupItem style={{backgroundColor: "#0F395C", color: "#fff"}}>
+					Precio: ${item.price}
+				</ListGroupItem>
+				<ListGroupItem style={{backgroundColor: "#0F395C", color: "#fff"}}>
+					Categoria: {item.category}
+				</ListGroupItem>
 				<Link to={`/detail/${item.id}`}>
-					<Button variant="outline-primary" size="lg">
+					<Button variant='primary' size='lg'>
 						Detalle
 					</Button>
 				</Link>

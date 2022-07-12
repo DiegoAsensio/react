@@ -28,7 +28,7 @@ function MyNavBar() {
 						<img className='w-25' src={"/img/logoShoes.png"} alt='Logo' />
 						<div className=' logo-text'>
 							<h1>
-								Zapa<span>tillas</span>
+								Perfect<span>shoes</span>
 							</h1>
 						</div>
 					</div>
