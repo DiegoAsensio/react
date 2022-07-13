@@ -1,12 +1,9 @@
 import React, {useContext, useState} from "react";
-// Sweet Alert
 import Swal from "sweetalert2";
-// Context
-import {CartContext} from "../context/CartContext";
-// RouterDom
+import {CartContext} from "../../context/CartContext";
 import {Navigate} from "react-router-dom";
-// Firebase
 import {addDoc, collection, getFirestore} from "firebase/firestore";
+import "./Checkout.css";
 
 const Checkout = () => {
 	const {cart, cartTotal, cartClear} = useContext(CartContext);
@@ -66,31 +63,32 @@ const Checkout = () => {
 		<div className='container' style={{color: "#fff"}}>
 			<h2>CHECKOUT</h2>
 			<p>Ingresá tus datos para terminar la compra</p>
+			<div>
+				<div className='container formContact'>
+					<form onSubmit={handleSubmit} className='form-control'>
+						<input
+							type='text'
+							placeholder='Escribí tu nombre'
+							className='form-control my-2'
+							onChange={handleChange}
+							name='name'
+						/>
 
-			<div className='container'>
-				<form onSubmit={handleSubmit} className='form-control'>
-					<input
-						type='text'
-						placeholder='Escribí tu nombre'
-						className='form-control my-2'
-						onChange={handleChange}
-						name='name'
-					/>
+						<input
+							type='email'
+							placeholder='Escribí tu mail'
+							className='form-control my-2'
+							onChange={handleChange}
+							name='email'
+						/>
 
-					<input
-						type='email'
-						placeholder='Escribí tu mail'
-						className='form-control my-2'
-						onChange={handleChange}
-						name='email'
-					/>
-
-					<div>
-						<button type='submit' className='btn btn-success my-3'>
-							Finalizar Compra
-						</button>
-					</div>
-				</form>
+						<div>
+							<button type='submit' className='btn btn-success my-3'>
+								Finalizar Compra
+							</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	);

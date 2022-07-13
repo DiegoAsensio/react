@@ -1,6 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import CartWidget from "../CartWidget";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import "./NavBar.css";
 
 function MyNavBar() {
@@ -10,16 +12,24 @@ function MyNavBar() {
 			className='sticky d-flex justify-content-around align-items-center'
 		>
 			<div className='nav-left'>
-				<div lassName='menu'>
-					<ul>
-						<li>
-							<Link to='/category/ejercicio'>Ejercicio</Link>
-						</li>
-						<li>
-							<Link to='/category/urbana'>Urbanas</Link>
-						</li>
-					</ul>
-				</div>
+				<DropdownButton
+					id='dropdown-basic-button'
+					title='Catálogo'
+					variant='danger'
+				>
+					<Dropdown.Item>
+						{" "}
+						<Link to='/'>Productos</Link>
+					</Dropdown.Item>
+					<Dropdown.Item>
+						{" "}
+						<Link to='/category/ejercicio'>Ejercicio</Link>
+					</Dropdown.Item>
+					<Dropdown.Item>
+						{" "}
+						<Link to='/category/urbana'>Urbanas</Link>
+					</Dropdown.Item>
+				</DropdownButton>
 			</div>
 
 			<div>

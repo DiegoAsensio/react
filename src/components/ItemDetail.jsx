@@ -4,7 +4,7 @@ import ItemCount from "./ItemCount";
 import {CartContext} from "../context/CartContext";
 
 const ItemDetail = ({resultado}) => {
-	const {id, name, img, stock, price, description, category} = resultado;
+	const {id, name, img, stock, price, category} = resultado;
 	const {cart, addItem, isInCart} = useContext(CartContext);
 	const navigate = useNavigate();
 	const handleNavigate = () => {
@@ -40,7 +40,6 @@ const ItemDetail = ({resultado}) => {
 								<h4 className='card-title text-uppercase fw-bold'>{name}</h4>
 								<div className='mt-4'>
 									<p className='card-text'>Categoría: {category}</p>
-									<p className='card-text'>Descripción: {description}</p>
 									<p className='card-text'>Precio: ${price}</p>
 									<p className='card-text'>
 										Stock disponible: {stock} unidades

@@ -8,8 +8,12 @@
 	color: #fff;
 }
 
+.about h2 {
+	font-size: 2rem;
+}
+
 .about .logo {
-	width: 10rem;
+	width: 20rem;
 }
 
 .images-container {
@@ -31,6 +35,7 @@
 
 .main-text span {
 	color: orange;
+	font-size: 1.3rem;
 }
 
 .description {

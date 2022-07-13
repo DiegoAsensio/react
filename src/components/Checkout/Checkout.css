@@ -1,0 +1,11 @@
+.container {
+	margin: 100px;
+}
+
+.container h2 {
+	font-size: 46px;
+}
+
+.checkout-detail {
+	display: flex;
+}

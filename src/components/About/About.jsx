@@ -5,11 +5,13 @@ const About = () => {
 	return (
 		<div className='container about'>
 			<h2 className='mt-5'>ACERCA DE</h2>
-
+			<div>
+				<img className='logo pt-2' src={"/img/logoAbout.png"} alt='Logo' />
+			</div>
 			<p className='main-text'>
-				<img className='logo' src={"/img/logoShoes.png"} alt='Logo' /> es un
-				e-commerce ficticio, desarrollado por <span>Diego Asensio</span>, como
-				proyecto final para el curso de <span>React JS</span> de Coderhouse.
+				es un e-commerce ficticio, desarrollado por <span>Diego Asensio</span>,
+				como proyecto final para el curso de <span>React JS</span> de
+				Coderhouse.
 			</p>
 
 			<div className='images-container'>

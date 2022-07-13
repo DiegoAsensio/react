@@ -5,7 +5,6 @@
 }
 
 #navbar {
-	overflow: hidden;
 	background-color: #fbb034;
 	text-transform: uppercase;
 	font-weight: 600;
@@ -16,6 +15,10 @@
 	list-style: none;
 	position: relative;
 	float: left;
+}
+
+#navbar li:hover {
+	text-decoration: underline;
 }
 
 #navbar a {
@@ -53,5 +56,28 @@ h1 {
 span {
 	font-size: 0.85rem;
 	margin-top: -0.3rem;
-	text-transform: uppercase;
+}
+
+@media screen and (max-width: 700px) {
+	.mobile-header {
+		background-color: #fbb034;
+	}
+
+	.navbar .logo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0 0.5rem;
+	}
+
+	.second-navbar a {
+		color: black;
+		text-decoration: none;
+		padding: 20px;
+	}
+
+	.second-navbar a:hover {
+		text-decoration: underline;
+		color: black;
+	}
 }
