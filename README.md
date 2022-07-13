@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Diego Asensio</h1>
 <h3 align="center">A passionate frontend developer from Argentina</h3>
 
-- 🔭 I’m currently working on [PerfectShoes](https://github.com/DiegoAsensio/LGHjardineria.git)
+- 🔭 I’m currently working on [PerfectShoes]((https://e-commerce-asensio.firebaseapp.com/category/ejercicio)
 
 - 🌱 I’m currently learning **React Js**
 
