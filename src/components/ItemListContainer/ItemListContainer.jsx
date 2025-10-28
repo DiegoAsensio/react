@@ -4,7 +4,6 @@ import ItemList from "../Items/ItemList";
 import "./ItemListContainer.css";
 import {
 	collection,
-	doc,
 	getDocs,
 	getFirestore,
 	query,
@@ -18,50 +17,75 @@ export default function ItemListContainer() {
 	const {id} = useParams();
 
 	useEffect(() => {
-		const db = getFirestore();
-		const productsCollection = collection(db, "items");
+		const fetchProducts = async () => {
+			try {
+				setLoading(true);
+				setError(false);
 
-		if (id) {
-			const q = query(productsCollection, where("category", "==", id));
+				const db = getFirestore();
+				const productsCollection = collection(db, "items");
 
-			getDocs(q)
-				.then((snapshot) => {
-					setResultado(
-						snapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
-					);
-				})
-				.catch((error) => {
-					setError(error);
-				})
-				.finally(() => {
-					setLoading(false);
-				});
-		} else {
-			getDocs(productsCollection)
-				.then((snapshot) => {
-					setResultado(
-						snapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
-					);
-				})
-				.catch((error) => {
-					setError(error);
-				})
-				.finally(() => {
-					setLoading(false);
-				});
-		}
+				let q;
+				if (id) {
+					q = query(productsCollection, where("category", "==", id));
+				} else {
+					q = productsCollection;
+				}
+
+				const snapshot = await getDocs(q);
+
+				if (snapshot.empty) {
+					console.log("No se encontraron productos en la colección 'items'");
+					setResultado([]);
+				} else {
+					const products = snapshot.docs.map((doc) => ({
+						...doc.data(),
+						id: doc.id,
+					}));
+					console.log("Productos cargados:", products);
+					setResultado(products);
+				}
+			} catch (err) {
+				console.error("Error al cargar productos:", err);
+				setError(true);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchProducts();
 	}, [id]);
 
 	return (
-		<>
-			<div>{loading && "Cargando..."}</div>
-			<div>
-				{error &&
-					"Estamos teniendo problemas con nuestros servidores, pronto volverá a la normalidad"}
-			</div>
-			<div>
+		<div style={{minHeight: "50vh"}}>
+			{loading && (
+				<div style={{color: "#fff", textAlign: "center", padding: "2rem"}}>
+					<h3>Cargando productos...</h3>
+				</div>
+			)}
+
+			{error && (
+				<div style={{color: "#fff", textAlign: "center", padding: "2rem"}}>
+					<h3>Error al cargar productos</h3>
+					<p>
+						Estamos teniendo problemas con nuestros servidores, pronto volverá a
+						la normalidad
+					</p>
+				</div>
+			)}
+
+			{!loading && !error && resultado.length === 0 && (
+				<div style={{color: "#fff", textAlign: "center", padding: "2rem"}}>
+					<h3>No hay productos disponibles</h3>
+					<p>
+						Por favor, verifica que la base de datos tenga productos cargados
+					</p>
+				</div>
+			)}
+
+			{!loading && !error && resultado.length > 0 && (
 				<ItemList resultado={resultado} />
-			</div>
-		</>
+			)}
+		</div>
 	);
 }
