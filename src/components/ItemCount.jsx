@@ -1,40 +1,59 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import "./ItemCount.css";
 
-const ItemCount = ({ stock = 5, compra, setCompra, agregarAlCarrito }) => {
+const ItemCount = ({stock = 5, compra, setCompra, agregarAlCarrito}) => {
 	const sumar = () => {
-		compra < stock && setCompra(compra + 1);
+		if (compra < stock) {
+			setCompra(compra + 1);
+		}
 	};
 
 	const restar = () => {
-		compra > 1 && setCompra(compra - 1);
+		if (compra > 1) {
+			setCompra(compra - 1);
+		}
 	};
 
 	return (
-		<>
+		<div className='item-count-container'>
 			{stock === 0 ? (
-				<button className="mt-3 btn btn-sm btn-danger">Sin stock</button>
+				<button className='btn-no-stock' disabled>
+					Sin stock disponible
+				</button>
 			) : (
-				<div className="mt-2">
-					<button onClick={restar} className="btn btn-sm btn-outline-success">
-						-
-					</button>
-					<span className="mx-2">{compra}</span>
-					<button onClick={sumar} className="btn btn-sm btn-outline-success">
-						+
-					</button>
-
-					<div>
+				<>
+					<div className='quantity-selector'>
 						<button
-							onClick={() => agregarAlCarrito(compra)}
-							className="my-2 btn btn-sm btn-success"
+							onClick={restar}
+							className='quantity-btn'
+							disabled={compra <= 1}
+							aria-label='Disminuir cantidad'
 						>
-							Agregar al carrito
+							−
+						</button>
+						<span className='quantity-display'>
+							{compra} / {stock}
+						</span>
+						<button
+							onClick={sumar}
+							className='quantity-btn'
+							disabled={compra >= stock}
+							aria-label='Aumentar cantidad'
+						>
+							+
 						</button>
 					</div>
-				</div>
+
+					<button
+						onClick={() => agregarAlCarrito(compra)}
+						className='btn-add-cart'
+					>
+						<span>🛒</span> Agregar al carrito
+					</button>
+				</>
 			)}
-		</>
+		</div>
 	);
 };
+
 export default ItemCount;

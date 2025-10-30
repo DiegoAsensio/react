@@ -1,95 +1,68 @@
 import React, {useContext, useState} from "react";
 import {CartContext} from "../context/CartContext";
+import "./CartItem.css";
 
 const CartItem = ({item}) => {
-	const {name, img, cantidad, price, stock} = item;
-
+	const {name, img, cantidad, price, stock, id} = item;
 	const {deleteElement, increaseQuantity, decreaseQuantity} =
 		useContext(CartContext);
-
 	const [edit, setEdit] = useState(false);
+
 	const handleEdit = () => {
-		!edit ? setEdit(true) : setEdit(false);
+		setEdit(!edit);
 	};
 
 	return (
-		<>
-			<div
-				style={{
-					width: "500px",
-					maxWidth: "85%",
-					backgroundColor: "#f5f5f5",
-					borderRadius: "10px",
-				}}
-				className='card my-4 mx-auto text-black py-2'
-			>
-				<div className='row g-0 m-2'>
-					<div className='col-md-4'>
-						<img
-							src={img}
-							alt={`${name}`}
-							style={{maxHeight: "200px"}}
-							className='img-fluid rounded'
-						/>
-					</div>
-					<div className='col-md-8'>
-						<div className='card-body px-auto'>
-							<h5 className='card-title fw-bold text-uppercase'>{name}</h5>
-							<p className='card-text m-0'>Precio por unidad: ${price}</p>
-							<p className='card-text m-0'>Unidades solicitadas: {cantidad}</p>
-							<span>
-								<p className='mt-1 fw-bold'>TOTAL: ${price * cantidad}</p>
-							</span>
+		<div className='cart-item'>
+			<div className='cart-item-content'>
+				<div className='cart-item-image'>
+					<img src={img} alt={name} />
+				</div>
 
-							{!edit ? (
-								<div>
-									<button
-										onClick={handleEdit}
-										className='btn btn-warning btn-sm mx-2'
-									>
-										Editar
-									</button>
+				<div className='cart-item-info'>
+					<h3 className='cart-item-name'>{name}</h3>
+					<p className='cart-item-price'>Precio: ${price}</p>
+					<p className='cart-item-quantity'>Cantidad: {cantidad}</p>
+					<p className='cart-item-total'>
+						<strong>Total: ${price * cantidad}</strong>
+					</p>
 
-									<button
-										onClick={() => deleteElement(name)}
-										className='btn btn-danger btn-sm mx-2'
-									>
-										Eliminar
-									</button>
-								</div>
-							) : (
-								<div className='d-flex justify-content-center'>
-									<button
-										onClick={() => decreaseQuantity(name)}
-										className='btn btn-warning btn-sm mx-1'
-									>
-										-
-									</button>
-
-									<span style={{width: "3rem"}} className='text-dark'>
-										{cantidad} / {stock}
-									</span>
-
-									<button
-										onClick={() => increaseQuantity(name)}
-										className='btn btn-warning btn-sm mx-1'
-									>
-										+
-									</button>
-
-									<button
-										onClick={handleEdit}
-										className='btn btn-sm mx-4 btn-success'
-									>
-										Realizado
-									</button>
-								</div>
-							)}
+					{!edit ? (
+						<div className='cart-item-actions'>
+							<button onClick={handleEdit} className='btn-edit'>
+								✏️ Editar
+							</button>
+							<button onClick={() => deleteElement(id)} className='btn-delete'>
+								🗑️ Eliminar
+							</button>
 						</div>
-					</div>
+					) : (
+						<div className='cart-item-edit'>
+							<button
+								onClick={() => decreaseQuantity(id)}
+								className='quantity-control'
+								disabled={cantidad <= 1}
+							>
+								−
+							</button>
+							<span className='quantity-value'>
+								{cantidad} / {stock}
+							</span>
+							<button
+								onClick={() => increaseQuantity(id)}
+								className='quantity-control'
+								disabled={cantidad >= stock}
+							>
+								+
+							</button>
+							<button onClick={handleEdit} className='btn-done'>
+								✓ Listo
+							</button>
+						</div>
+					)}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

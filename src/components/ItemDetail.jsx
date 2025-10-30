@@ -1,82 +1,86 @@
 import React, {useContext, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import {motion} from "framer-motion";
 import ItemCount from "./ItemCount";
 import {CartContext} from "../context/CartContext";
+import "./ItemDetail.css";
 
 const ItemDetail = ({resultado}) => {
 	const {id, name, img, stock, price, category} = resultado;
-	const {cart, addItem, isInCart} = useContext(CartContext);
+	const {isInCart, addItem} = useContext(CartContext);
 	const navigate = useNavigate();
+	const [compra, setCompra] = useState(1);
+
 	const handleNavigate = () => {
 		navigate(-1);
 	};
-	const [compra, setCompra] = useState(1);
 
-	const agregarAlCarrito = (compra) => {
-		const ItemToAdd = {
+	const agregarAlCarrito = (cantidad) => {
+		const itemToAdd = {
 			...resultado,
-			cantidad: compra,
+			cantidad: cantidad,
 		};
-		addItem(ItemToAdd);
+		addItem(itemToAdd);
 	};
 
 	return (
-		<>
-			<div className='d-flex flex-column px-2 align-items-center justify-content-center'>
-				<div
-					className='card p-4 text-dark mx-2 '
-					style={{maxWidth: "700px", backgroundColor: "#F5F5F5"}}
-				>
-					<div className='row g-0'>
-						<div className='col-md-4'>
-							<img
-								src={img}
-								alt={{name}}
-								className='img-fluid rounded sm-w-25'
-							/>
+		<div className='item-detail-container'>
+			<motion.div
+				initial={{opacity: 0, y: 20}}
+				animate={{opacity: 1, y: 0}}
+				transition={{duration: 0.5}}
+				className='item-detail-card'
+			>
+				<div className='detail-grid'>
+					<div className='detail-image-section'>
+						<img src={img} alt={name} className='detail-image' />
+					</div>
+
+					<div className='detail-info-section'>
+						<div className='detail-category'>{category}</div>
+						<h1 className='detail-name'>{name}</h1>
+
+						<div className='detail-price-section'>
+							<span className='detail-price'>${price}</span>
+							<span className='detail-stock'>
+								{stock > 0 ? `${stock} disponibles` : "Sin stock"}
+							</span>
 						</div>
-						<div className='col-md-8'>
-							<div className='card-body'>
-								<h4 className='card-title text-uppercase fw-bold'>{name}</h4>
-								<div className='mt-4'>
-									<p className='card-text'>Categoría: {category}</p>
-									<p className='card-text'>Precio: ${price}</p>
-									<p className='card-text'>
-										Stock disponible: {stock} unidades
-									</p>
-								</div>
-							</div>
-							{!isInCart(name) ? (
-								<ItemCount
-									compra={compra}
-									stock={resultado.stock}
-									setCompra={setCompra}
-									agregarAlCarrito={agregarAlCarrito}
-								/>
-							) : (
-								<div className='mt-3'>
+
+						<div className='detail-divider'></div>
+
+						{!isInCart(id) ? (
+							<ItemCount
+								compra={compra}
+								stock={stock}
+								setCompra={setCompra}
+								agregarAlCarrito={agregarAlCarrito}
+							/>
+						) : (
+							<div className='detail-actions-added'>
+								<p className='added-message'>✓ Producto agregado al carrito</p>
+								<div className='detail-buttons'>
 									<Link to='/'>
-										<button className='btn mx-2 btn-sm btn-warning'>
+										<button className='btn-continue'>
 											Continuar comprando
 										</button>
 									</Link>
 									<Link to='/cart'>
-										<button className='btn mx-2 btn-sm btn-primary'>
-											Terminar compra
-										</button>
+										<button className='btn-checkout'>Ir al carrito</button>
 									</Link>
 								</div>
-							)}
-						</div>
+							</div>
+						)}
 					</div>
 				</div>
-				<div className='mt-5'>
-					<button onClick={handleNavigate} className='m-2 mb-5 btn btn-primary'>
-						Volver
+
+				<div className='detail-back-button'>
+					<button onClick={handleNavigate} className='btn-back'>
+						← Volver
 					</button>
 				</div>
-			</div>
-		</>
+			</motion.div>
+		</div>
 	);
 };
 
